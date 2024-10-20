@@ -40,14 +40,23 @@ public class FreelancerController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteFreelancer(@PathVariable Long id) {
-        freelancerService.markFreelancerDeleted(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<?> deleteFreelancer(@PathVariable Long id) {
+        freelancerService.markFreelancerDeleted(id);      
+        return ResponseEntity.ok("Freelancer with ID " + id + " has been marked for deletion.");
     }
 
-    /*
-     * To Do
-     * Get freelancers deleted in the last 7 days
-     * Approve a freelancer
-     */
+    @GetMapping("/newFreelancers")
+    public List<Freelancer> getNewFreelancers() {
+        return freelancerService.getNewFreelancers();
+    }
+  
+    @PutMapping("/{id}/approve")
+    public Freelancer approveFreelancer(@PathVariable Long id) {
+        return freelancerService.approveFreelancer(id);
+    }
+   
+    @GetMapping("/deleted")
+    public List<Freelancer> getDeletedFreelancersInLast7Days() {
+        return freelancerService.getDeletedFreelancersInLast7Days();
+    }
 }
