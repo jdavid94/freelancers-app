@@ -43,7 +43,7 @@ public class FreelancerService {
         return savedFreelancer;
     }
 
-     public List<Freelancer> getAllFreelancers() {
+    public List<Freelancer> getAllFreelancers() {
         return freelancerRepository.findAll();
     }
 
