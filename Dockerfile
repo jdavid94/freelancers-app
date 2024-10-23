@@ -1,0 +1,16 @@
+FROM openjdk:17-alpine
+
+WORKDIR /app
+
+COPY target/freelancers-app-0.0.1-SNAPSHOT.jar freelancers-app.jar
+
+EXPOSE 8081 8082
+
+ENV SPRING_DATASOURCE_URL=jdbc:h2:mem:freelancersdb
+ENV SPRING_H2_CONSOLE_ENABLED=true
+ENV SPRING_H2_CONSOLE_PATH=/h2-console
+ENV SPRING_JPA_HIBERNATE_DDL_AUTO=update
+ENV SPRING_DATASOURCE_USERNAME=
+ENV SPRING_DATASOURCE_PASSWORD=
+
+ENTRYPOINT ["java", "-jar", "freelancers-app.jar"]
